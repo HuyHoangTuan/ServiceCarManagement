@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface TestRepo extends JpaRepository<Test, UUID>
 {
-    Test save(TestModel model);
+    Test save(Test test);
     List<Test> findAll();
 
 }
