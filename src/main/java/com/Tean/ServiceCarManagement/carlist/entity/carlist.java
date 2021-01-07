@@ -1,5 +1,6 @@
 package com.Tean.ServiceCarManagement.carlist.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,6 +32,7 @@ public class carlist
     @Column(name = "cartype")
     private String cartype;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "registerdate")
     private Timestamp registerdate;
 

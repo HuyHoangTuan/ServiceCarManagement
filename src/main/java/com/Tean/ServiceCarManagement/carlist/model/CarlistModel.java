@@ -1,5 +1,6 @@
 package com.Tean.ServiceCarManagement.carlist.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,7 @@ public class CarlistModel
     private String brand;
     private int manufacturedate;
     private String cartype;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Timestamp registerdate;
     private String state;
 }

@@ -24,6 +24,10 @@ public class CarlistServiceImpl implements CarlistService
     @Override
     public void save(CarlistModel model)
     {
+        license l = new license();
+        l.setLicense(model.getLicense());
+        licenseRepo.save(l);
+
         carlist car = new carlist();
         car.setDriver(model.getDriver());
         car.setLicense(model.getLicense());
@@ -34,9 +38,7 @@ public class CarlistServiceImpl implements CarlistService
         car.setState(model.getState());
         carlistRepo.save(car);
 
-        license l = new license();
-        l.setLicense(model.getLicense());
-        licenseRepo.save(l);
+
     }
 
     @Override
