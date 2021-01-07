@@ -4,7 +4,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AuthModel {
+public class AuthModel
+{
     private int status;
     private String token;
     private String message;
