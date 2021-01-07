@@ -11,4 +11,5 @@ public interface ScheduleRepo extends JpaRepository<Schedule, UUID>
     List<Schedule> findAll();
     long deleteById(int id);
     Schedule save(Schedule schedule);
+    List<Schedule> findByCarid(int carid);
 }

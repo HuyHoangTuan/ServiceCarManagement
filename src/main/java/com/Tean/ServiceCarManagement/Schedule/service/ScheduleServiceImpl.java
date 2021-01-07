@@ -41,4 +41,9 @@ public class ScheduleServiceImpl implements ScheduleService
         schedule.setCapacity(model.getCapacity());
         scheduleRepo.save(schedule);
     }
+
+    @Override
+    public List<Schedule> findByCarid(int carid) {
+        return scheduleRepo.findByCarid(carid);
+    }
 }

@@ -12,4 +12,5 @@ public interface ScheduleService
     List<Schedule> findAll();
     void deleteById(List<Integer> list);
     void save(ScheduleModel model);
+    List<Schedule> findByCarid(int carid);
 }
