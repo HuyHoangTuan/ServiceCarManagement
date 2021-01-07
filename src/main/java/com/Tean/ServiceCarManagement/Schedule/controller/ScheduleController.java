@@ -5,6 +5,8 @@ import com.Tean.ServiceCarManagement.Schedule.model.AuthModel;
 import com.Tean.ServiceCarManagement.Schedule.model.ScheduleEraserModel;
 import com.Tean.ServiceCarManagement.Schedule.model.ScheduleModel;
 import com.Tean.ServiceCarManagement.Schedule.service.ScheduleService;
+import com.Tean.ServiceCarManagement.carlist.entity.carlist;
+import com.Tean.ServiceCarManagement.carlist.service.CarlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,9 @@ public class ScheduleController
 {
     @Autowired
     private ScheduleService scheduleService;
+
+    @Autowired
+    private CarlistService carlistService;
 
     @GetMapping("/schedule/get")
     public ResponseEntity<?> scheduleget(Principal principal)
@@ -36,6 +41,16 @@ public class ScheduleController
     public ResponseEntity<?> scheduleadd(Principal principal, @RequestBody ScheduleModel model)
     {
         AuthModel res = new AuthModel();
+        List<carlist> Carlist = carlistService.findById(model.getCarid());
+        for(carlist car : Carlist)
+        {
+            if(!car.getState().equals("Active"))
+            {
+                res.setState(2);
+                res.setMessage("Car is inactive");
+                return ResponseEntity.ok().body(res);
+            }
+        }
         if(model.getStartingtime().after(model.getArrivingtime()) == true)
         {
             res.setState(1);
