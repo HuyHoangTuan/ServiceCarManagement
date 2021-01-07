@@ -46,6 +46,12 @@ public class ScheduleController
     {
         AuthModel res = new AuthModel();
         List<carlist> Carlist = carlistService.findById(model.getCarid());
+        if(Carlist.size()==0)
+        {
+            res.setState(2);
+            res.setMessage("Car is inactive");
+            return ResponseEntity.ok().body(res);
+        }
         for(carlist car : Carlist)
         {
             if(!car.getState().equals("Active"))

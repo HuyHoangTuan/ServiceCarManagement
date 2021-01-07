@@ -27,7 +27,7 @@ public class CarlistAPIController {
     @DeleteMapping("/carlist/delete/{model}")
     public void carlistdelete(Principal principal, @RequestBody List<Integer> model)
     {
-        for(int id : model.size())
+        for(int id : model)
         {
             carlistService.deleteById(id);
         }
