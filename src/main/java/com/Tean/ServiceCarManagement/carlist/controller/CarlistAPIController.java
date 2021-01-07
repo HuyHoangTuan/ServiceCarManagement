@@ -25,12 +25,13 @@ public class CarlistAPIController {
     }
 
     @DeleteMapping("/carlist/delete/{model}")
-    public void carlistdelete(Principal principal, @RequestBody List<Integer> model)
+    public ResponseEntity<?> carlistdelete(Principal principal, @RequestBody List<Integer> model)
     {
         for(int id : model)
         {
             carlistService.deleteById(id);
         }
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/carlist/add")
