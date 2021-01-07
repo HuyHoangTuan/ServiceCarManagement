@@ -7,11 +7,14 @@ import com.Tean.ServiceCarManagement.Schedule.model.ScheduleModel;
 import com.Tean.ServiceCarManagement.Schedule.service.ScheduleService;
 import com.Tean.ServiceCarManagement.carlist.entity.carlist;
 import com.Tean.ServiceCarManagement.carlist.service.CarlistService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -30,11 +33,12 @@ public class ScheduleController
         return  ResponseEntity.ok().body(scheduleService.findAll());
     }
 
-    @DeleteMapping("/schedule/delete")
-    public ResponseEntity<?> scheduledelete(Principal principal, @RequestBody ScheduleEraserModel model)
+    @DeleteMapping ("/schedule/delete/{model}")
+    public ResponseEntity<?> scheduledelete(Principal principal, @PathVariable List<Integer> model)
     {
-        scheduleService.deleteById(model.getIdlist());
-        return ResponseEntity.ok().body(scheduleService.findAll());
+        for(int v : model)
+           scheduleService.deleteById(v);
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/schedule/add")

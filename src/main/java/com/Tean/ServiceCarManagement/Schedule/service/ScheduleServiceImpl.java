@@ -5,10 +5,12 @@ import com.Tean.ServiceCarManagement.Schedule.model.ScheduleModel;
 import com.Tean.ServiceCarManagement.Schedule.repo.ScheduleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class ScheduleServiceImpl implements ScheduleService
 {
     @Autowired
@@ -21,12 +23,9 @@ public class ScheduleServiceImpl implements ScheduleService
     }
 
     @Override
-    public void deleteById(List<Integer> list)
+    public void deleteById(int id)
     {
-        for(int id : list)
-        {
-            scheduleRepo.deleteById(id);
-        }
+        scheduleRepo.deleteById(id);
     }
 
     @Override

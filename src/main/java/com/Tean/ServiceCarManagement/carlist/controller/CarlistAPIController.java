@@ -24,10 +24,10 @@ public class CarlistAPIController {
         return ResponseEntity.ok().body(carlistService.findAll());
     }
 
-    @DeleteMapping("/carlist/delete")
-    public void carlistdelete(Principal principal, @RequestBody CarlistEraserModel model)
+    @DeleteMapping("/carlist/delete/{model}")
+    public void carlistdelete(Principal principal, @RequestBody List<Integer> model)
     {
-        for(int id : model.getList())
+        for(int id : model.size())
         {
             carlistService.deleteById(id);
         }

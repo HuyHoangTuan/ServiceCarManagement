@@ -70,7 +70,6 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 		</dependency>
 
-
 	</dependencies>
 
 	<build>
